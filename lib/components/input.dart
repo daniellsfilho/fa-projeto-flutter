@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class InputValidator {
   String? validateText(String value, String field) {
-    if (field == 'Complemento' || field == 'Número') return null;
 
     if (field != 'E-mail') {
       if (value.length == 0) {

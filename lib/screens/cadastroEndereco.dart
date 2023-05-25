@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teste_flutter_create/screens/resultadoEndereco.dart';
 
 import '../components/input.dart';
 
@@ -17,6 +18,7 @@ class FormsState extends State<FormCadastro> {
   static final TextEditingController _complemento = TextEditingController();
   static final TextEditingController _uf = TextEditingController();
   static final TextEditingController _cep = TextEditingController();
+
 
   static final validator = InputValidator();
 
@@ -64,8 +66,12 @@ class FormsState extends State<FormCadastro> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Dados enviados com sucesso!')));
-      _formKey.currentState!.reset();
+          .showSnackBar(const SnackBar(content: Text('Dados enviados com sucesso!')));
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ResultadoEndereco(nome: _nome.text, endereco: _endereco.text, numero: _numero.text, complemento: _complemento.text, uf: _uf.text, cep: _cep.text))
+      );
     }
   }
 
@@ -104,10 +110,12 @@ class FormsState extends State<FormCadastro> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         ElevatedButton(
+                          style: const ButtonStyle(fixedSize: MaterialStatePropertyAll(Size(130.0, 50.0))),
                           onPressed: () => _sendForm(),
                           child: const Text('Enviar'),
                         ),
                         ElevatedButton(
+                          style: const ButtonStyle(fixedSize: MaterialStatePropertyAll(Size(130.0, 50.0))),
                           onPressed: () => _formKey.currentState!.reset(),
                           child: const Text('Cancelar'),
                         )
