@@ -1,22 +1,5 @@
 import 'package:flutter/material.dart';
 
-class InputValidator {
-  String? validateText(String value, String field) {
-
-    if (field == 'Senha'){
-      if (value.length == 0){
-        return "Informe a senha";
-      }
-    }
-
-    if (field != 'E-mail') {
-      if (value.length == 0) {
-        return "Informe o $field";
-      }
-      return null;
-    }
-  }
-}
 
 class _InputState extends State<Input> {
   @override
@@ -24,7 +7,6 @@ class _InputState extends State<Input> {
     return TextFormField(
       onSaved: (String? value) => widget.onSaved(value ?? ''),
       keyboardType: widget.keyboardType,
-      validator: (String? value) => widget.validator(value ?? '', widget.label),
       decoration: InputDecoration(
         hintText: 'Digite o ${widget.label}',
         border: OutlineInputBorder(),
@@ -41,13 +23,11 @@ class Input extends StatefulWidget {
   const Input({
     Key? key,
     required this.label,
-    required this.validator,
     required this.onSaved,
     this.keyboardType = TextInputType.text,
   }) : super(key: key);
 
   final String label;
-  final String? Function(String value, String field) validator;
   final void Function(String value) onSaved;
   final TextInputType keyboardType;
 
