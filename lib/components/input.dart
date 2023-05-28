@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 class InputValidator {
   String? validateText(String value, String field) {
 
-    if (field == 'Senha'){
+    if (field == 'Senha' || field == 'Quantidade'){
       if (value.length == 0){
-        return "Informe a senha";
+        return "Informe a $field";
       }
     }
-
     if (field != 'E-mail') {
       if (value.length == 0) {
         return "Informe o $field";
